@@ -2,11 +2,9 @@ package com.ctrlcc.jobportal.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-@Table(name = "job_seeker_profile")
-public class JobSeekerProfile {
+@Table(name = "recruiter_profile")
+public class RecruiterProfile {
 
     @Id
     private int userAccountId;
@@ -19,26 +17,20 @@ public class JobSeekerProfile {
     private String firstName;
     private String lastName;
     private String city;
+
     private String state;
+
     private String country;
-    private String workAuthorization;
-    private String employmentType;
-    private String resume;
+
+    private String company;
 
     @Column(nullable = true, length = 64)
     private String profilePhoto;
 
-    @OneToMany(targetEntity = Skills.class, cascade = CascadeType.ALL, mappedBy = "jobSeekerProfile")
-    private List<Skills> skills;
-
-    public JobSeekerProfile() {
+    public RecruiterProfile() {
     }
 
-    public JobSeekerProfile(Users userId) {
-        this.userId = userId;
-    }
-
-    public JobSeekerProfile(int userAccountId, Users userId, String firstName, String lastName, String city, String state, String country, String workAuthorization, String employmentType, String resume, String profilePhoto, List<Skills> skills) {
+    public RecruiterProfile(int userAccountId, Users userId, String firstName, String lastName, String city, String state, String country, String company, String profilePhoto) {
         this.userAccountId = userAccountId;
         this.userId = userId;
         this.firstName = firstName;
@@ -46,11 +38,12 @@ public class JobSeekerProfile {
         this.city = city;
         this.state = state;
         this.country = country;
-        this.workAuthorization = workAuthorization;
-        this.employmentType = employmentType;
-        this.resume = resume;
+        this.company = company;
         this.profilePhoto = profilePhoto;
-        this.skills = skills;
+    }
+
+    public RecruiterProfile(Users users) {
+        this.userId = users;
     }
 
     public int getUserAccountId() {
@@ -109,28 +102,12 @@ public class JobSeekerProfile {
         this.country = country;
     }
 
-    public String getWorkAuthorization() {
-        return workAuthorization;
+    public String getCompany() {
+        return company;
     }
 
-    public void setWorkAuthorization(String workAuthorization) {
-        this.workAuthorization = workAuthorization;
-    }
-
-    public String getEmploymentType() {
-        return employmentType;
-    }
-
-    public void setEmploymentType(String employmentType) {
-        this.employmentType = employmentType;
-    }
-
-    public String getResume() {
-        return resume;
-    }
-
-    public void setResume(String resume) {
-        this.resume = resume;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getProfilePhoto() {
@@ -141,17 +118,9 @@ public class JobSeekerProfile {
         this.profilePhoto = profilePhoto;
     }
 
-    public List<Skills> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<Skills> skills) {
-        this.skills = skills;
-    }
-
     @Override
     public String toString() {
-        return "JobSeekerProfile{" +
+        return "RecruiterProfile{" +
                 "userAccountId=" + userAccountId +
                 ", userId=" + userId +
                 ", firstName='" + firstName + '\'' +
@@ -159,11 +128,8 @@ public class JobSeekerProfile {
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
-                ", workAuthorization='" + workAuthorization + '\'' +
-                ", employmentType='" + employmentType + '\'' +
-                ", resume='" + resume + '\'' +
+                ", company='" + company + '\'' +
                 ", profilePhoto='" + profilePhoto + '\'' +
-                ", skills=" + skills +
                 '}';
     }
 }

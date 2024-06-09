@@ -1,26 +1,17 @@
 package com.ctrlcc.jobportal.entity;
 
-import java.util.Date;
-
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
 public class Users {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     @Column(unique = true)
@@ -31,14 +22,17 @@ public class Users {
 
     private boolean isActive;
 
-    @DateTimeFormat
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date registrationDate;
 
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="userTypeId", referencedColumnName="userTypeId")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userTypeId", referencedColumnName = "userTypeId")
     private UsersType userTypeId;
 
-    public Users(int userId, String email, String password, boolean isActive, Date registrationDate, UsersType userTypeId)    {
+    public Users() {
+    }
+
+    public Users(int userId, String email, String password, boolean isActive, Date registrationDate, UsersType userTypeId) {
         this.userId = userId;
         this.email = email;
         this.password = password;
@@ -47,89 +41,50 @@ public class Users {
         this.userTypeId = userTypeId;
     }
 
-    public Users() {
-    }
-
-    /**
-     * @return int return the userId
-     */
     public int getUserId() {
         return userId;
     }
 
-    /**
-     * @param userId the userId to set
-     */
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    /**
-     * @return String return the email
-     */
     public String getEmail() {
         return email;
     }
 
-    /**
-     * @param email the email to set
-     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * @return String return the password
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     * @param password the password to set
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     * @return boolean return the isActive
-     */
-    public boolean isIsActive() {
+    public boolean isActive() {
         return isActive;
     }
 
-    /**
-     * @param isActive the isActive to set
-     */
-    public void setActive(boolean isActive) {
-        this.isActive = isActive;
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
-    /**
-     * @return Date return the registrationDate
-     */
     public Date getRegistrationDate() {
         return registrationDate;
     }
 
-    /**
-     * @param registrationDate the registrationDate to set
-     */
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
 
-    /**
-     * @return UsersType return the userTypeId
-     */
     public UsersType getUserTypeId() {
         return userTypeId;
     }
 
-    /**
-     * @param userTypeId the userTypeId to set
-     */
     public void setUserTypeId(UsersType userTypeId) {
         this.userTypeId = userTypeId;
     }
@@ -145,5 +100,4 @@ public class Users {
                 ", userTypeId=" + userTypeId +
                 '}';
     }
-
 }
