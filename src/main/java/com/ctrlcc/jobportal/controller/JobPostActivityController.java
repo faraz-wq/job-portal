@@ -10,7 +10,6 @@ import com.ctrlcc.jobportal.services.UsersService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
-
 @Controller
 public class JobPostActivityController {
     
@@ -20,7 +19,7 @@ public class JobPostActivityController {
         this.usersService = usersService;
     }
 
-    @GetMapping("/dashboard")
+    @GetMapping("/dashboard/")
     public String searchJobs(Model model)   {
         Object currentUserProfile = usersService.getCurrentUserProfile();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
