@@ -118,7 +118,7 @@ public class RecruiterProfile {
     }
 
     public String getProfilePhoto() {
-        return profilePhoto;
+        return this.profilePhoto;
     }
 
     public void setProfilePhoto(String profilePhoto) {
@@ -127,8 +127,8 @@ public class RecruiterProfile {
     
     @Transient
     public String getPhotosImagePath() {
-        if (profilePhoto == null) return null;
-        return "/photos/recruiter/" + userAccountId + "/" + profilePhoto;
+        if (this.profilePhoto == null) return null;
+        return "/photos/recruiter/" + this.userAccountId + "/" + this.profilePhoto;
     }
 
     @Override

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <title>Dashboard</title>
@@ -22,7 +22,7 @@
     <label class="mt-2 ms-5 font-weight-bold h5"
     ><a href="/">hotdevjobs</a
     ><span class="logo_com font-weight-bold h5" style="color: white">
-          .com</span
+        .com</span
     ></label
     >
     <button
@@ -75,18 +75,18 @@
         <img
                 class="rounded-circle me-3"
                 height="50px"
-                width="50x"
+                width="50px"
                 th:if="${user.photosImagePath!=null}"
                 th:src="@{${user?.photosImagePath}}"
         />
 
         <label th:if="${user.firstName != null && user.lastName != null}"
-               th:text="${user.firstName+' '+user.lastName}"
-               class="nav-item nav-link px-2 me-3">
+                th:text="${user.firstName+' '+user.lastName}"
+                class="nav-item nav-link px-2 me-3">
         </label>
 
         <label th:unless="${user.firstName != null && user.lastName != null}" th:text="${username}"
-               class="nav-item nav-link px-2 me-3"></label>
+                class="nav-item nav-link px-2 me-3"></label>
 
         <button class="myBtn-light me-5" onclick="window.location.href='/logout'">Logout</button>
     </div>
